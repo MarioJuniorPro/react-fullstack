@@ -5,6 +5,7 @@ const passport = require("passport");
 const keys = require("./config/keys");
 const bodyParser = require("body-parser");
 require("./models/User");
+require("./models/Survey");
 require("./services/passport");
 
 mongoose
@@ -34,6 +35,7 @@ app.use(
 
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   // Serve react client
