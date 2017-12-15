@@ -22,10 +22,16 @@ module.exports = app => {
     
     
     const mailer = new Mailer(survey, surveyTemplate(survey));
-    const sent = mailer.send();
-    sent.then(response => {
-      res.send(response);
-    })
+    try {
+      await mailer.send();
+      await survey.save();
+      req.user.credits -= 1;
+      const user = await req.user.save();
+      res.send(user);
+    } catch (error) {
+      res.status(422).send(error)      
+    }
+
     
   });
 };
