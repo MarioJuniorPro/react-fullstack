@@ -5,7 +5,7 @@ export default emails => {
     .split(",")
     .map(email => email.trim())
     .filter(email => {
-        return re.test(email) === false
+      return re.test(email) === false;
     });
 
   if (invalidEmails.length) {

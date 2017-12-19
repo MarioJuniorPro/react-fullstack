@@ -364,10 +364,10 @@ module.exports = survey => {
                             <table cellpadding="0" cellspacing="0" width="100%">
                               <tr>
                                 <td style="text-align: left; font-weight:bold;">
-                                <a href="${keys.redirectDomain}/api/survey/thanks">Yes</a>
+                                <a href="${keys.redirectDomain}/api/surveys/${survey.id}/yes">Yes</a>
                                 </td>
                                 <td style="text-align: right; font-weight:bold;">
-                                <a href="${keys.redirectDomain}/api/survey/thanks">NO</a>
+                                <a href="${keys.redirectDomain}/api/surveys/${survey.id}/no">NO</a>
                                 </td>
                               </tr>
                             </table>
