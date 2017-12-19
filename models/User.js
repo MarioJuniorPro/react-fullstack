@@ -9,4 +9,14 @@ const userSchema = new Schema({
   }
 });
 
+userSchema.methods.incrementCredits = async function(credits, cb) {
+  this.credits += (credits || 0);
+  return await this.save();
+};
+
+userSchema.methods.decrementCredits = async function(credits, cb) {
+  this.credits -= (credits || 0);
+  return await this.save();
+};
+
 mongoose.model("users", userSchema);

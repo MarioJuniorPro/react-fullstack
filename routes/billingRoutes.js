@@ -14,7 +14,7 @@ module.exports = app => {
       source: token
     });
 
-    req.user.credits += 5;
+    req.user.incrementCredits(5);
     const user = await req.user.save();
     res.send(user);
   });
