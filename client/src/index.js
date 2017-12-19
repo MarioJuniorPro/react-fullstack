@@ -19,13 +19,3 @@ ReactDOM.render(
 
 console.log('STRIPE KEY: ', process.env.REACT_APP_STRIPE_KEY)
 console.log('Environment: ', process.env.NODE_ENV)
-
-
-// const survey = {
-//   title: 'MY Title',
-//   subject: 'subjects',
-//   recipients: ['necrower@gmail.com', '2383d98f8a-cdb2b3@inbox.mailtrap.io'],
-//   body: 'BODYYY'
-// }
-
-// axios.post('/api/surveys')

@@ -10,27 +10,15 @@ const Path = require("path-parser");
 const { URL } = require("url");
 
 module.exports = app => {
-  app.get("/api/surveys/test", async (req, res) => {
-    const ret = await Survey.updateOne({
-        _id: '5a389da6945eb839cc511472',
-        recipients: {
-            $elemMatch: {
-                email: 'necrower@mailinator.com', responded: false
-            }
-        }
-    }, {
-        $inc: {'yes': 1},
-        $set: {'recipients.$.responded': true}
-    }).exec();
-
-    console.log(ret)
-  
-      res.send({});
+  app.get("/api/surveys", requireLogin, async (req, res) => {
+    const surveys = await Survey.find({ _user: req.user.id })
+      .select({ recipients: 0})
+    res.send(surveys);
   });
 
-
-  app.get("/api/surveys/thanks", (req, res) => {
-    res.send("Thanks for voting!");
+  app.get("/api/surveys/:surveyId/:choice", (req, res) => {
+    console.log(req.params)
+    res.send(`Thanks for voting!`);
   });
 
   app.post("/api/surveys/webhooks", (req, res) => {
@@ -60,7 +48,8 @@ module.exports = app => {
           }
       }, {
           $inc: {[choice]: 1},
-          $set: {'recipients.$.responded': true}
+          $set: {'recipients.$.responded': true},
+          lastRespondend: new Date()
       }).exec();
 
     })
